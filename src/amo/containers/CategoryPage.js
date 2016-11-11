@@ -7,7 +7,7 @@ import {
   loadSearchResultsIfNeeded,
   mapStateToProps,
 } from 'core/containers/SearchPage';
-// import { loadCategoriesIfNeeded } from 'core/utils';
+import { loadCategoriesIfNeeded } from 'core/utils';
 
 
 export default compose(
@@ -16,10 +16,10 @@ export default compose(
       deferred: true,
       promise: loadSearchResultsIfNeeded,
     },
-    // {
-    //   deferred: true,
-    //   promise: loadCategoriesIfNeeded,
-    // },
+    {
+      deferred: true,
+      promise: loadCategoriesIfNeeded,
+    },
   ]),
   connect(mapStateToProps)
 )(SearchPage);

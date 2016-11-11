@@ -6,25 +6,37 @@ import { searchStart, searchLoad, searchFail } from 'core/actions/search';
 
 export function mapStateToProps(state, ownProps) {
   const { location } = ownProps;
-  const lang = state.api.lang;
-  if (location.query.q === state.search.query) {
-    return { lang, ...state.search };
+  const filters = {
+    addonType: location.query.type,
+    category: location.query.category,
+    query: location.query.q,
   }
-  return { lang };
+  const hasSearchParams = Object.values(filters).some((param) => (
+    typeof param !== 'undefined' && param.length
+  ));
+  // const searchParamsMatchState = Object.values(filters).some((param) => (
+  //   typeof param !== 'undefined' && param.length
+  // ));
+
+  if (location.query.q === state.search.query) {
+    return { filters, hasSearchParams, ...state.search };
+  }
+  return { filters, hasSearchParams };
 }
 
-function performSearch({ dispatch, page, query, api, auth = false }) {
-  if (!query) {
+function performSearch({ dispatch, page, api, auth = false, filters }) {
+  if (!filters || !Object.values(filters).length) {
     return Promise.resolve();
   }
-  dispatch(searchStart(query, page));
-  return search({ page, query, api, auth })
-    .then((response) => dispatch(searchLoad({ page, query, ...response })))
-    .catch(() => dispatch(searchFail({ page, query })));
+  dispatch(searchStart({ page, filters }));
+  return search({ page, api, auth, filters })
+    .then((response) => dispatch(searchLoad({ page, filters, ...response })))
+    .catch(() => dispatch(searchFail({ page, filters })));
 }
 
-export function isLoaded({ page, query, state }) {
-  return state.query === query && state.page === page && !state.loading;
+export function isLoaded({ page, state, filters }) {
+  // return Object.keys(state.filters) === filters.query && state.page === page && !state.loading;
+  return !state.loading;
 }
 
 export function parsePage(page) {
@@ -33,11 +45,11 @@ export function parsePage(page) {
 }
 
 export function loadSearchResultsIfNeeded({ store: { dispatch, getState }, location }) {
-  const query = location.query.q;
   const page = parsePage(location.query.page);
   const state = getState();
-  if (!isLoaded({ state: state.search, query, page })) {
-    return performSearch({ dispatch, page, query, api: state.api, auth: state.auth });
+  const filters = state.filters;
+  if (!isLoaded({ state: state.search, page, filters })) {
+    return performSearch({ dispatch, page, api: state.api, auth: state.auth, filters });
   }
   return true;
 }
