@@ -58,12 +58,4 @@ describe('<SearchPage />', () => {
     const paginators = findAllByTag(root, Paginate);
     assert.deepEqual(paginators, []);
   });
-
-  // it('maps api state to props', () => {
-  //   const stateProps = mapStateToProps({
-  //     api: { clientApp: 'android', lang: 'de' },
-  //   });
-  //
-  //   assert.deepEqual(stateProps, { clientApp: 'android', lang: 'de' });
-  // });
 });

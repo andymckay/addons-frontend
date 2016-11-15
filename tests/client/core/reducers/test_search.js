@@ -16,21 +16,6 @@ describe('search reducer', () => {
     assert.deepEqual(results, []);
   });
 
-  describe('SET_FILTERS', () => {
-    it('sets the filters', () => {
-      const state = search(undefined, {
-        type: 'SET_FILTERS',
-        payload: { filters: { query: 'foo' } },
-      });
-      assert.deepEqual(state.filters, { query: 'foo' });
-      const newState = search(state, {
-        type: 'SET_FILTERS',
-        payload: { filters: { query: 'bar' } },
-      });
-      assert.deepEqual(newState.filters, { query: 'bar' });
-    });
-  });
-
   describe('SEARCH_STARTED', () => {
     it('sets the filters and loading', () => {
       const state = search(

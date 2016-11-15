@@ -2,7 +2,6 @@ import {
   SEARCH_STARTED,
   SEARCH_LOADED,
   SEARCH_FAILED,
-  SET_FILTERS,
 } from 'core/constants';
 
 const initialState = {
@@ -16,8 +15,6 @@ const initialState = {
 export default function search(state = initialState, action) {
   const { payload } = action;
   switch (action.type) {
-    case SET_FILTERS:
-      return { ...state, filters: payload.filters };
     case SEARCH_STARTED:
       return { ...state, ...payload, count: 0, loading: true, results: [] };
     case SEARCH_LOADED:
