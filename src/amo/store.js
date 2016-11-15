@@ -14,7 +14,13 @@ import version from 'core/reducers/version';
 export default function createStore(initialState = {}) {
   return _createStore(
     combineReducers({
-      addons, api, auth, categories, search, reviews, reduxAsyncConnect,
+      addons,
+      api,
+      auth,
+      categories,
+      reduxAsyncConnect,
+      reviews,
+      search,
       version,
     }),
     initialState,
