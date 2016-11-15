@@ -4,7 +4,7 @@ import {
   loadSearchResultsIfNeeded,
   mapStateToProps,
   parsePage,
-} from 'core/containers/SearchPage';
+} from 'core/searchUtils';
 import * as api from 'core/api';
 
 describe('Search.mapStateToProps()', () => {

@@ -99,9 +99,25 @@ export class PaginateBase extends React.Component {
           )}
         </div>
         <div className="Paginator-links">
-          {this.makeLink({ page: currentPage - 1, currentPage, filters, pathname, text: i18n.gettext('Previous'), className: 'Paginator-previous' })}
-          {this.visiblePages().map((page) => this.makeLink({ page, currentPage, filters, pathname }))}
-          {this.makeLink({ page: currentPage + 1, currentPage, filters, pathname, text: i18n.gettext('Next'), className: 'Paginator-next' })}
+          {this.makeLink({
+            page: currentPage - 1,
+            currentPage,
+            filters,
+            pathname,
+            text: i18n.gettext('Previous'),
+            className: 'Paginator-previous',
+          })}
+          {this.visiblePages().map((page) => (
+            this.makeLink({ page, currentPage, filters, pathname }
+          )))}
+          {this.makeLink({
+            page: currentPage + 1,
+            currentPage,
+            filters,
+            pathname,
+            text: i18n.gettext('Next'),
+            className: 'Paginator-next',
+          })}
         </div>
       </div>
     );

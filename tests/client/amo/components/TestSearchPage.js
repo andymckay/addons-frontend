@@ -3,7 +3,6 @@ import React from 'react';
 import SearchPage from 'amo/components/SearchPage';
 import SearchResult from 'amo/components/SearchResult';
 import SearchResults from 'core/components/Search/SearchResults';
-import { mapStateToProps } from 'core/containers/SearchPage';
 import Paginate from 'core/components/Paginate';
 import { findAllByTag, findByTag, shallowRender } from 'tests/client/helpers';
 

@@ -3,10 +3,7 @@ import { asyncConnect } from 'redux-connect';
 import { compose } from 'redux';
 
 import SearchPage from 'amo/components/SearchPage';
-import {
-  loadSearchResultsIfNeeded,
-  mapStateToProps,
-} from 'core/containers/SearchPage';
+import { loadSearchResultsIfNeeded, mapStateToProps } from 'core/searchUtils';
 import { loadCategoriesIfNeeded } from 'core/utils';
 
 

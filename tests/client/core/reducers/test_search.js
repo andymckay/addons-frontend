@@ -37,7 +37,7 @@ describe('search reducer', () => {
         {
           filters: { query: 'bar' },
           loading: false,
-          results: [{ slug: 'bar' }]
+          results: [{ slug: 'bar' }],
         },
         { type: 'SEARCH_STARTED', payload: { filters: { query: 'foo' } } });
       assert.deepEqual(state.filters, { query: 'foo' });

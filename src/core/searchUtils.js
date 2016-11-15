@@ -1,6 +1,3 @@
-import { connect } from 'react-redux';
-import { asyncConnect } from 'redux-connect';
-
 import { search } from 'core/api';
 import { searchStart, searchLoad, searchFail } from 'core/actions/search';
 
@@ -89,10 +86,3 @@ export function loadSearchResultsIfNeeded({ store: { dispatch, getState }, locat
   }
   return true;
 }
-
-// export default function createSearchPage(SearchPageComponent) {
-//   return asyncConnect([{
-//     deferred: true,
-//     promise: loadSearchResultsIfNeeded,
-//   }])(connect(mapStateToProps)(SearchPageComponent));
-// }

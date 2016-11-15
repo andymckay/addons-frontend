@@ -6,7 +6,7 @@ import 'isomorphic-fetch';
 import { Schema, arrayOf, normalize } from 'normalizr';
 import config from 'config';
 
-import { makeQueryParams } from 'core/containers/SearchPage';
+import { makeQueryParams } from 'core/searchUtils';
 
 
 const API_BASE = `${config.get('apiHost')}${config.get('apiPath')}`;

@@ -33,7 +33,7 @@ class SearchResults extends React.Component {
     const {
       ResultComponent, count, hasSearchParams, filters, i18n, loading, results,
     } = this.props;
-    const { addonType, category, query } = filters;
+    const { query } = filters;
 
     let hideMessageText = false;
     let messageText;
