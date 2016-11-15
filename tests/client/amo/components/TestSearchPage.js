@@ -49,8 +49,7 @@ describe('<SearchPage />', () => {
     assert.equal(paginator.props.count, 80);
     assert.equal(paginator.props.currentPage, 3);
     assert.equal(paginator.props.pathname, '/search/');
-    // TODO: This should be called queryParams or be the non-location type things.
-    assert.deepEqual(paginator.props.filters, { q: 'foo' });
+    assert.deepEqual(paginator.props.queryParams, { q: 'foo' });
   });
 
   it('does not render a Paginate when there is no search term', () => {
