@@ -11,13 +11,11 @@ import SearchResult from './SearchResult';
 class SearchResults extends React.Component {
   static propTypes = {
     ResultComponent: PropTypes.object.isRequired,
-    addonType: PropTypes.string,
-    category: PropTypes.string,
     count: PropTypes.number,
-    hasSearchParams: PropTypes.bool.isRequired,
+    filters: PropTypes.object,
+    hasSearchParams: PropTypes.bool,
     i18n: PropTypes.object.isRequired,
     loading: PropTypes.bool,
-    query: PropTypes.string,
     results: PropTypes.arrayOf(PropTypes.object),
   }
 
@@ -26,15 +24,16 @@ class SearchResults extends React.Component {
     ResultComponent: SearchResult,
     category: undefined,
     count: 0,
-    query: undefined,
+    filters: {},
+    hasSearchParams: false,
     results: [],
   }
 
   render() {
     const {
-      ResultComponent, addonType, category, count,
-      hasSearchParams, i18n, loading, query, results,
+      ResultComponent, count, hasSearchParams, filters, i18n, loading, results,
     } = this.props;
+    const { addonType, category, query } = filters;
 
     let hideMessageText = false;
     let messageText;

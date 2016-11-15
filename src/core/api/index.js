@@ -6,6 +6,9 @@ import 'isomorphic-fetch';
 import { Schema, arrayOf, normalize } from 'normalizr';
 import config from 'config';
 
+import { makeQueryParams } from 'core/containers/SearchPage';
+
+
 const API_BASE = `${config.get('apiHost')}${config.get('apiPath')}`;
 
 export const addon = new Schema('addons', { idAttribute: 'slug' });
@@ -61,15 +64,14 @@ export function callApi({
 }
 
 export function search({ api, page, auth = false, filters = {} }) {
+  const populatedFilters = makeQueryParams(filters);
   return callApi({
     endpoint: 'addons/search',
     schema: { results: arrayOf(addon) },
     params: {
       app: api.clientApp,
-      category: filters.category,
-      q: filters.query,
+      ...populatedFilters,
       page,
-      type: filters.addonType,
     },
     state: api,
     auth,

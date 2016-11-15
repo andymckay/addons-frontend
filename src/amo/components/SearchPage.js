@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import Link from 'amo/components/Link';
 import Paginate from 'core/components/Paginate';
 import SearchResults from 'core/components/Search/SearchResults';
+import { makeQueryParams } from 'core/containers/SearchPage';
 
 import SearchResult from './SearchResult';
 
@@ -27,16 +28,20 @@ export default class SearchPage extends React.Component {
 
   render() {
     const {
-      LinkComponent, ResultComponent, count, filters, loading, page, results,
+      LinkComponent, ResultComponent, count, filters, hasSearchParams,
+      loading, page, results,
     } = this.props;
-    const paginator = filters.query && filters.count > 0 ?
+    console.log('mqp', filters, makeQueryParams(filters));
+    const paginator = count && hasSearchParams > 0 ?
       <Paginate LinkComponent={LinkComponent} count={count} currentPage={page}
-        pathname="/search/" query={{ q: filters.query }} showPages={0} /> : [];
+        filters={makeQueryParams(filters)} pathname="/search/"
+        showPages={0} /> : [];
 
     return (
       <div className="search-page">
         <SearchResults ResultComponent={ResultComponent} count={count}
-          loading={loading} results={results} {...filters} />
+          hasSearchParams={hasSearchParams} loading={loading} results={results}
+          filters={filters} />
         {paginator}
       </div>
     );
